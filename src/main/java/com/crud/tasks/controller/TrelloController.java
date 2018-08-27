@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/trello")
@@ -19,24 +18,9 @@ public class TrelloController {
     @Autowired
     private TrelloClient trelloClient;
 
-//         My code exercise 18.2
-//    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-//    public List<TrelloBoardDto> getTrelloBoards() {
-//      return trelloBoards.stream().filter(trelloBoard -> trelloBoard.getName() != null && trelloBoard.getId() != null)
-//          .filter(trelloBoard -> trelloBoard.getName().contains("Kodilla"))
-//          .collect(Collectors.toList());
-// }
-//
-//     Code from materials module 18.3
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
-      List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-      trelloBoards.forEach(trelloBoardDto -> {
-            System.out.println(trelloBoardDto.getName() + " - " + trelloBoardDto.getId());
-            System.out.println("This board contains lists: ");
-            trelloBoardDto.getLists().forEach(trelloList ->
-                System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
-        });
+    public List<TrelloBoardDto> getTrelloBoards() {
+      return trelloClient.getTrelloBoards();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
