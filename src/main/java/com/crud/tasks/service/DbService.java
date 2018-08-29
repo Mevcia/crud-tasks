@@ -4,7 +4,6 @@ import com.crud.tasks.domain.Task;
 import com.crud.tasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +26,6 @@ public class DbService {
     }
 
     public void deleteTask(final Long id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }
